@@ -1,0 +1,13 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        string text = Console.ReadLine();
+
+        var newLine = "Вы ввели: " +  text;
+
+        Console.WriteLine(newLine); 
+    }
+}
