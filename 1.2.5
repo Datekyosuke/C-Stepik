@@ -1,0 +1,17 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        Console.WriteLine("Введите два числа через пробел: длина и ширина стола");
+        string line = Console.ReadLine();
+        string[] splitString = line.Split(' ');
+
+        double length = Convert.ToDouble(splitString[0]) - 0.2; // длина
+        double width = Convert.ToDouble(splitString[1]) -0.2; // ширина
+        double square = (double)length * width;
+
+        Console.WriteLine("Площадь стола: {0}", square); 
+    }
+}
