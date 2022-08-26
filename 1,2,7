@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+public class MainClass
+{
+    public static string Convertor(int num)
+        {
+     
+            string [] symbols = new string [] {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "a", "b", "c", "d", "e", "f"};
+            StringBuilder answerBulder = new StringBuilder();
+            if (num< 0) answerBulder.Append('-');
+            while (num>0)
+            {
+                answerBulder.Insert(0, symbols[num % 16]);
+                num /= 16;
+            }
+            return answerBulder.ToString();
+    }
+    public static void Main()
+    {
+        string line = Console.ReadLine(); // ввод числа в десятеричной системе 
+
+        int x = int.Parse(line);
+
+        string answer = Convertor(x);
+     
+        if(x==0) Console.WriteLine(0);
+            else Console.WriteLine(answer);
+        
+        
+    }
+}
