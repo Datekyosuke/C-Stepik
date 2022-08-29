@@ -1,0 +1,25 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        string line = Console.ReadLine();
+        string[] splitString = line.Split(' ');
+
+        int a = Convert.ToInt32(splitString[0]);
+        int b = Convert.ToInt32(splitString[1]);
+        int c = Convert.ToInt32(splitString[2]);
+
+        int minValue = 0;
+        if ( a <= b) 
+            minValue =a;
+        else if (b <= c)
+            minValue =b;
+        else minValue =c;
+        
+
+
+        Console.WriteLine(minValue);
+    }
+}
