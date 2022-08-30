@@ -1,0 +1,17 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {        
+        char letter = Convert.ToChar(Console.ReadLine());
+
+        switch(letter)
+        {
+            case 'а': case 'о': case 'е': case 'у': case 'я': case 'и': case 'э': case 'ю': case 'ё': case 'ы':
+                Console.WriteLine("гласная");
+             break;
+        }
+
+    }
+}
