@@ -1,0 +1,23 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        Console.WriteLine("Введите два числа через пробел: длина и ширина участка");
+        string line = Console.ReadLine();
+        string[] splitString = line.Split(' ');
+
+        double length = Convert.ToDouble(splitString[0]); // длина
+        double width = Convert.ToDouble(splitString[1]); // ширина
+        double landArea = 0;                             // переменная для площади
+
+        if (length % 5 == 0) length = length - ((int)(length/5) * 0.2);
+            else length = length - (((int)(length/5) + 1) * 0.2);
+        if (width % 5 == 0) width = width - ((int)(width/5) * 0.2);
+            else width = width - (((int)(width/5) + 1) * 0.2);
+        landArea = Math.Round(length * width, 2);
+
+        Console.WriteLine($"Площадь участка: {landArea}"); 
+    }
+}
