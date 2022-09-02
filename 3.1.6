@@ -1,0 +1,27 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        int firstNumber = int.Parse(Console.ReadLine());
+        int secondNumber = int.Parse(Console.ReadLine());
+
+        int[,] masSrav = new int[2, 10]; 
+        int charIn = (int)Math.Log10(firstNumber) + 1;
+
+        for (int i = 0; i < charIn; i++)
+        {
+            masSrav[0, firstNumber % 10] ++;
+            masSrav[1, secondNumber % 10] ++;
+            firstNumber = firstNumber / 10;
+            secondNumber = secondNumber / 10;
+            
+        }
+        for (int i = 0; i < 10; i++)
+            if (masSrav[0, i] > 0 && masSrav[1, i] > 0)
+                for (int j = 0; j < masSrav[0, i]; j++)
+                    Console.Write(i + " ");
+
+    }
+}
