@@ -1,0 +1,14 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        string num1 = Console.ReadLine();
+        string num2 = Console.ReadLine();
+        int count = 0;
+        for (int i = 0; i < num1.Length; i++)
+            if(num1[i] == num2[i]) count++;
+        Console.WriteLine("Совпадение " + count + " элементов");
+    }
+}
