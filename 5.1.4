@@ -1,0 +1,15 @@
+public static int[] GetCubes(int startValue, int endValue)
+    {   
+        int[] cubes = new int [endValue - startValue +1];
+        int j = 0;
+        for (int i = startValue; i <= endValue; i++, j++)
+            cubes[j] = i*i*i;
+        return cubes;
+    }
+public static void PrintSum(int[] cubes)
+    {   
+        int sum = 0;
+        for(int i = 0; i < cubes.Length; i++)
+            sum += cubes[i];
+        Console.WriteLine(sum);
+    }
