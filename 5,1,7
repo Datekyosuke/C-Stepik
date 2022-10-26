@@ -1,0 +1,23 @@
+public static void VasyaStyle(int number)
+    {   
+               List<int> numbers = new ();
+
+        for (int i = 0; i < number; i++)
+        {
+            string str = i.ToString();
+            if (str.Contains('0') || str.Contains('1') || str.Contains('4') || str.Contains('5') || str.Contains('6') || str.Contains('8')
+             || str.Contains('9'))
+                continue;
+            else numbers.Add(i);
+        }
+     /*   foreach (int number in numbers)
+            Console.Write(number + " ");*/
+        for(int i = 0; i < numbers.Count; i++)
+            for(int j = i; j < numbers.Count; j++)
+                for(int k = 0; k < numbers.Count; k++)
+                    if((numbers[i] * numbers[j] + numbers[k] == number))
+                        Console.WriteLine(number + " = " + numbers[i] + " * " + numbers[j] + " + " + numbers[k]); 
+    }
+
+
+
