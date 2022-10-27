@@ -1,0 +1,7 @@
+public static void Print(string symbol, string amount, out string result)
+{
+    result = "";
+    for( int i = 0; i < int.Parse(amount); i++)
+        result = string.Concat(result, symbol);
+}
+
