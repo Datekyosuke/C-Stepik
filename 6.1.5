@@ -1,0 +1,11 @@
+public static double GeometricMean(params int[] numbers)
+        {
+            double geometricMean = new float();
+            double multiplyNumbers = new float();
+            multiplyNumbers = 1.0;
+            foreach (int x in numbers)
+                multiplyNumbers = multiplyNumbers * x;
+            geometricMean = Math.Pow(multiplyNumbers, 1.0 / numbers.Length);
+            return geometricMean;
+
+        }
