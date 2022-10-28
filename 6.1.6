@@ -1,0 +1,9 @@
+ public static void ToEven(ref int[] array)
+        {
+            System.Collections.Generic.List<int> myList = new System.Collections.Generic.List<int>();
+            for(int i = 0; i < array.Length; i++)
+                if(array[i] % 2 == 0 || array[i] == 0)
+                    myList.Add(array[i]);
+            array = myList.ToArray();
+
+        }
