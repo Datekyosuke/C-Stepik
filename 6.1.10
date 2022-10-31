@@ -1,0 +1,34 @@
+public static void AhShitHereWeGoAgain(int[] array, int hourHandAmount)
+        {
+            int[] arrayNew = new int[array.Length+1];
+            int previousElement = 0;
+            arrayNew[0] = 0;
+            for(int i = 1; i < arrayNew.Length; i++)
+            {
+                previousElement = array[i-1] + previousElement;
+                arrayNew[i] = previousElement;
+            }
+            int minIndex = 0;
+            int minValue = arrayNew[0];
+            for(int i = 0; i < arrayNew.Length; i++)
+            {
+                if(arrayNew[i] < minValue)
+                {
+                    minValue = arrayNew[i];
+                    minIndex = i;
+                }
+
+            }
+            for (int i = 0; i < arrayNew.Length; i++)
+            {
+                if (i == minIndex)
+                    arrayNew[i] = hourHandAmount;
+                else arrayNew[i] = arrayNew[i] - minValue + hourHandAmount;
+            }
+            foreach (int element in arrayNew)
+                Console.Write(element + " ");
+        }
+
+
+
+
