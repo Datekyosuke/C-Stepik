@@ -1,0 +1,25 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+public class Program
+{
+    public static void Main()
+    {
+        var numbers = Console.ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(Int32.Parse);
+        List<int> number = new();
+        number.AddRange(numbers);
+        int firstIndx = number.IndexOf(0);
+        int secondIndx = number.IndexOf(0, firstIndx + 1);
+        List<int> numbersSort = new();
+        for(int i = firstIndx+1; i < secondIndx; i++)
+            numbersSort.Add(number[i]);
+         var orderedNumbers = numbersSort.OrderByDescending(u => u);
+        foreach(int i in orderedNumbers)
+            Console.Write(i + " ");
+    }
+}
+
+
+
+
+
