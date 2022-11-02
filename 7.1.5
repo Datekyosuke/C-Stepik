@@ -1,0 +1,13 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+public class Program
+{
+    
+        public static void Main()
+        {
+        List<string> list = Console.ReadLine().Replace(",", "").Split(" ").ToList();
+        list.Insert(2, ",");
+        Console.WriteLine(list[0] + " " + list[1] + list[2] + " " + list[3]);
+        }
+}
