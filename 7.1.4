@@ -1,0 +1,20 @@
+public static List<int> GetSyracusaSequence(int n)
+        {
+            List<int> listSyracusa = new();
+            while(n!=1)
+            if(n%2==0)
+            {
+                listSyracusa.Add(n);
+                n /= 2;
+            }
+            else
+            {
+                listSyracusa.Add(n);
+                n = n * 3 + 1;
+            }
+             listSyracusa.Add(1);
+             return listSyracusa;
+        }
+
+
+
