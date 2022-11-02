@@ -1,0 +1,8 @@
+ public static List<int> GetList(int n)
+    {
+        List<int> rnd = new();
+        Random rand = new Random();
+        for (int i = 0; i < n; i++)
+            rnd.Add(rand.Next()); 
+         return rnd;
+    }
