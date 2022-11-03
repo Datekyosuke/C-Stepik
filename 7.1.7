@@ -1,0 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+public class Program
+{
+    
+        public static void Main()
+        {
+            List<string> text = Console.ReadLine().Split(" ", StringSplitOptions.RemoveEmptyEntries).ToList();
+            foreach(string line in text)
+                if(!line.Contains('1'))
+                    Console.Write(line + " ");
+        }
+}
