@@ -1,0 +1,14 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+public class Program
+{
+    
+        public static void Main()
+        {
+            List<int> number = Console.ReadLine().Split(new[] { " " }, StringSplitOptions.RemoveEmptyEntries).Select(Int32.Parse).ToList();
+            for(int i = number[0]; i < number[number.Count - 1]; i++)
+                if(!number.Contains(i))
+                    Console.Write(i + " ");
+        }
+}
