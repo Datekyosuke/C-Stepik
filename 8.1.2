@@ -1,0 +1,36 @@
+using System;
+enum Mounths
+{
+    Январь,
+    Февраль,
+    Март,
+    Апрель,
+    Май,
+    Июнь,
+    Июль,
+    Август,
+    Сентябрь,
+    Октябрь,
+    Ноябрь,
+    Декабрь,
+}
+public class Program
+{
+
+    
+    static void Main()
+    {
+        var mounts = Enum.TryParse(Console.ReadLine(), true, out Mounths mounths);
+        if (mounts)
+        {
+            if (mounths == Mounths.Январь || mounths == Mounths.Март || mounths == Mounths.Май || mounths == Mounths.Июль || mounths == Mounths.Август || mounths == Mounths.Октябрь || mounths == Mounths.Декабрь)
+                Console.WriteLine("31");
+            else if (mounths == Mounths.Апрель || mounths == Mounths.Июнь || mounths == Mounths.Сентябрь || mounths == Mounths.Ноябрь)
+                Console.WriteLine("30");
+            else if (mounths == Mounths.Февраль)
+                Console.WriteLine("28");
+        }
+        else Console.WriteLine("введено некорректное название месяца");
+
+    }
+}
