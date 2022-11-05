@@ -1,0 +1,19 @@
+class Worker 
+{
+    
+    public string name;
+    public string surname;
+    public int rate;
+    public int days;
+    public void GetFullName()
+    {
+        Console.WriteLine("Фамилия сотрудника: " + surname);
+        Console.WriteLine("Имя сотрудника: " + name);
+    }
+    public int GetSalary()
+    {
+        return rate * days;
+    }
+}
+
+
