@@ -1,0 +1,44 @@
+using System;
+using System.Globalization;
+using System.Linq;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        var myS = new MyString();
+       myS.str = Console.ReadLine();
+        if (myS.str != null)
+        {
+            Console.WriteLine(myS.Reverse());
+            Console.WriteLine(myS.UcFirst());
+            Console.WriteLine(myS.UcWords());
+        }
+       
+    }
+}
+class MyString
+{
+    public string str;
+    public string Reverse()
+    {
+        if (str.Length != 0)
+            return  new string(str.Reverse().ToArray());
+        else
+        return str = "";
+    }
+    public string UcFirst()
+    {
+        if (str.Length != 0)
+            return  str.Substring(0, 1).ToUpper() + (str.Length > 1 ? str.Substring(1) : "");
+        else
+            return str = "";
+    }
+    public string UcWords()
+    {
+        if (str.Length != 0)
+            return CultureInfo.CurrentCulture.TextInfo.ToTitleCase(str);
+        else
+            return str = "";
+    }
+}
