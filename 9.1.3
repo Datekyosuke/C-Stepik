@@ -1,0 +1,42 @@
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        //используйте эти массивы строк для инициализации объектов мухи и паука
+        var s1 = Console.ReadLine().Split(' ').Select(double.Parse).ToArray();
+        var s2 = Console.ReadLine().Split(' ').Select(double.Parse).ToArray();
+        Location fly = new Location(s1);
+        Location spider = new Location(s2);
+        //Вывод ответа
+        if (fly.z != 0)
+            Console.WriteLine("Муха должна быть на полу!");
+        else 
+        {
+
+            Console.WriteLine("Расстояние: " + DistanceMeasurementStraightLine(fly.x, fly.y, fly.z, spider.x, spider.y, spider.z));
+            Console.WriteLine("Путь: " + PathCalculation(fly.x, fly.y, spider.x, spider.y, spider.z));
+        }
+    }
+    public static double DistanceMeasurementStraightLine(double x1, double y1, double z1, double x2, double y2, double z2)
+    {
+        return Math.Round((double)(Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2) + Math.Pow(z2 - z1, 2))), 5);
+    }
+    public static double PathCalculation(double x1, double y1, double x2, double y2, double z2)
+    {
+        return Math.Round((double)(Math.Sqrt(Math.Pow(x2 - x1, 2) + Math.Pow(y2 - y1, 2))), 5) + z2;
+    }
+}
+public class Location
+{
+    public double x;
+    public double y;
+    public double z;
+    public Location(double[] array)
+    {
+        x = array[0];
+        y = array[1];
+        z = array[2];
+    }
+}
