@@ -1,0 +1,53 @@
+using System;
+using System.Linq;
+
+public class MainClass
+{
+    public static void Main()
+    { 
+        var A = new Matrix();
+        A.Read();
+        double n = double.Parse(Console.ReadLine());
+        A.Multiply(n);
+        A.Write();
+    }
+}
+
+public class Matrix
+{
+    public int CountRow { get; private set; }
+    public int CountColumn { get; private set; }
+    public double[,] Data { get; private set; }
+    public void Read()
+    {
+        var s1 = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        CountRow = s1[0];
+        CountColumn = s1[1];
+        Data = new double[CountRow, CountColumn];
+        for (int i = 0; i < CountRow; i++)
+        {
+            var s2 = Console.ReadLine().Split(' ').Select(double.Parse).ToArray();
+            for(int j = 0; j < CountColumn; j++)
+                Data[i, j] = s2[j];
+        }
+
+    }
+    public void Multiply(double n)
+    {
+        for (int i = 0; i < CountRow; i++)
+        {
+            for (int j = 0; j < CountColumn; j++)
+                Data[i, j] *= n;
+        }
+    }
+    public void Write()
+    {
+        for (int i = 0; i < CountRow; i++)
+        {
+            for (var j = 0; j < CountColumn - 1; j++)
+                Console.Write(Data[i, j] + " ");
+            Console.Write(Data[i, CountColumn - 1]);
+            Console.WriteLine();
+        }
+    }
+}
