@@ -1,0 +1,57 @@
+using System;
+using System.Linq;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        var A = new Matrix();
+        A.Read();
+
+        var B = new Matrix();
+        B.Read();
+
+        A.Sum(B);
+        A.Write();
+    }
+}
+
+public class Matrix
+{
+    public int CountRow { get; private set; }
+    public int CountColumn { get; private set; }
+    public double[,] Data { get; private set; }
+    public void Read()
+    {
+        var s1 = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+        CountRow = s1[0];
+        CountColumn = s1[1];
+        Data = new double[CountRow, CountColumn];
+        for (int i = 0; i < CountRow; i++)
+        {
+            var s2 = Console.ReadLine().Split(' ').Select(double.Parse).ToArray();
+            for(int j = 0; j < CountColumn; j++)
+                Data[i, j] = s2[j];
+        }
+
+    }
+    
+    public void Write()
+    {
+        for (int i = 0; i < CountRow; i++)
+        {
+            for (var j = 0; j < CountColumn - 1; j++)
+                Console.Write(Data[i, j] + " ");
+            Console.Write(Data[i, CountColumn - 1]);
+            Console.WriteLine();
+        }
+    }
+    public void Sum(Matrix B)
+    {
+        for (int i = 0; i < CountRow; i++)
+        {
+            for (var j = 0; j < CountColumn - 1; j++)
+                Data[i, j] = Data[i, j] + B.Data[i, j];
+        }
+    }
+}
