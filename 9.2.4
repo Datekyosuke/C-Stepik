@@ -1,0 +1,45 @@
+using System;
+using System.Linq;
+public class MainClass
+{
+    public static void Main()
+    {
+        var s1 = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        double[,] matrix = ReadMatrix(s1[0], s1[1]);
+        
+        var s2 = Console.ReadLine().Split(' ').Select(int.Parse).ToArray();
+
+        double[,] matrix2 = ReadMatrix(s2[0], s2[1]);
+        
+        double[,] matrixMultiply = MatrixMultiply(matrix, matrix2);
+
+        for (int i = 0; i < matrixMultiply.GetLength(0); i++)
+        {
+            for (var j = 0; j < matrixMultiply.GetLength(1) - 1; j++)
+                Console.Write(matrixMultiply[i, j] + " ");
+            Console.Write(matrixMultiply[i, matrixMultiply.GetLength(1) -1]);
+            Console.WriteLine();
+        }
+    }
+    public static double[,] MatrixMultiply(double[,] matrix1, double[,] matrix2)
+    {
+        double[,] matrix = new double[matrix1.GetLength(0), matrix2.GetLength(1)];
+        for(int i = 0; i < matrix1.GetLength(0); i++)
+            for(int j = 0; j < matrix2.GetLength(1); j++)
+               for(var k = 0; k < matrix1.GetLength(1); k++)
+                    matrix[i, j] += matrix1[i, k] * matrix2[k , j];
+        return matrix;
+    }
+        public static double[,] ReadMatrix(int row, int column)
+    {
+        double[,] matrix = new double[row, column];
+        for (int i = 0; i < row; i++)
+        {
+            var input = Console.ReadLine().Split(' ');
+            for (int j = 0; j < column; j++)
+                matrix[i, j] = Double.Parse(input[j], System.Globalization.CultureInfo.InvariantCulture);
+        }
+        return matrix;
+    }
+}
