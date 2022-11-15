@@ -1,0 +1,30 @@
+
+using System;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        var myWatch = new Watch("Casio", "electronic", 15.99M);
+        myWatch.Print();
+    }
+  
+}
+class Watch
+{
+    public Watch(string title, string type, decimal price)
+    {
+        Title = title;
+        Type = type;
+        Price = price;
+    }
+
+    public string Title { get; }
+    public string Type { get; }
+    public decimal Price { get; }
+
+    internal void Print()
+    {
+        Console.WriteLine("Часы {0}, тип: {1}, цена: {2}$", Title, Type, Price);
+    }
+}
