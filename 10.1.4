@@ -1,0 +1,89 @@
+
+using System;
+using System.Linq;
+
+public class MainClass
+{
+    public static void Main()
+    {
+       /* var sequence = new Money("2", "р.");
+        var sequence1 = new Money("109", "коп.");
+        var sequence2 = new Money("2", "р.", "2", "коп.");
+        sequence1.Print();
+        sequence2.Print();*/
+        var test = new Money("10", "р.", "15", "коп.");    
+        test.PrintTransferCost(0.05);
+        test.Print();
+    }
+
+}
+
+class Money
+{
+    private int CountRub;
+
+    private int CountCop;
+
+
+    public Money(string v1, string v2)
+    {
+        if (int.Parse(v1) < 0)
+            Console.WriteLine("Не может быть отрицательным!");
+        else
+        {
+            if (v2 == "р.") CountRub = int.Parse(v1);
+            else
+            {
+                CountRub = int.Parse(v1) / 100;
+                CountCop = int.Parse(v1) - (int.Parse(v1) / 100) * 100;
+            }
+        }
+    }
+    public Money()
+    {
+        
+    }
+
+    public Money(string v1, string v2, string v3, string v4) 
+    {
+        if (int.Parse(v1) < 0 || int.Parse(v3) < 0)
+            Console.WriteLine("Не может быть отрицательным!");
+        else
+            if (v2 == "коп.") Console.WriteLine("Рубли и копейки перепутаны местами!");
+        else
+        {
+            CountRub = int.Parse(v1) + int.Parse(v3) / 100;
+            CountCop = int.Parse(v3) - (int.Parse(v3) / 100) * 100;
+        }
+        
+    }
+
+  public static Money Sum(Money A, Money B)
+    {
+        Money sum = new Money();
+        sum.CountCop = (A.CountCop + B.CountCop) - ((A.CountCop + B.CountCop) /100) * 100;
+        sum.CountRub = B.CountRub + A.CountRub + (A.CountCop + B.CountCop) / 100;
+        return sum;
+    }
+    public static Money Difference(Money A, Money B)
+    {
+        Money difference = new Money();
+        difference.CountRub = ((A.CountCop + A.CountRub * 100) - (B.CountCop + B.CountRub * 100)) / 100;
+        difference.CountCop = ((A.CountCop + A.CountRub * 100) - (B.CountCop + B.CountRub * 100)) % 100;
+        if(difference.CountRub < 0) {difference.CountRub = 0; difference.CountCop = 0; }
+        return difference;
+    }
+
+
+    public void Print()
+    {
+        if (CountRub == 0) Console.WriteLine(CountCop + " коп.");
+        else Console.WriteLine(CountRub + " р. " + CountCop + " коп.");
+    }
+
+    public void PrintTransferCost(double v)
+    {
+        double sumCopRub = (CountCop + CountRub * 100) * (1.0 + v);
+        Console.WriteLine((int)(sumCopRub / 100) + " р. " + (int)Math.Round(sumCopRub % 100) + " коп.");
+    }
+}
