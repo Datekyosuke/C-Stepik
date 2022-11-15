@@ -1,0 +1,55 @@
+
+using System;
+using System.Linq;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        var sequence = new Sequence(10);
+        var sequence1 = new Sequence(10, 15);
+        var sequence2 = new Sequence('h');
+        var sequence3 = new Sequence('b', 'u');
+
+    }
+
+}
+
+class Sequence
+{
+    private int[] arrayInt { get; }
+    private char[] arrayChar { get; }
+    public Sequence(int v) : this(0, v)
+    {
+        
+    }
+
+    public Sequence(int v, int v1) 
+    {
+        arrayInt = new int[v1+1];
+             for (int i = v; i <= v1; i++)
+            {
+                arrayInt[i] = i;
+                if (i == v) Console.Write(arrayInt[i]); else Console.Write(" " + arrayInt[i]);
+            }
+        Console.WriteLine();
+    }
+
+    public Sequence(char v) : this('a', v)
+    {
+        
+    }
+
+    public Sequence(char v, char v1)
+    {
+        arrayChar = new char[v1 - v + 1];
+        int j = 0;
+            for (char i = v; i <= v1; i++)
+            {
+                arrayChar[j] = i;
+                if (j == 0) Console.Write(arrayChar[j]); else Console.Write(" " + arrayChar[j]);
+                j++;
+            }
+        Console.WriteLine();
+    }
+}
