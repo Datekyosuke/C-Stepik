@@ -1,0 +1,19 @@
+class Barrel
+{
+    public Barrel()
+    {
+    }
+
+    public string material { get; internal set; }
+    public int volume { get; internal set; }
+
+    public void ToChange(int v)
+    {
+        volume = v;
+    }
+
+    public void ToChange(string v)
+    {
+        material = v;
+    }
+}
