@@ -1,0 +1,13 @@
+internal class Tree
+{
+    private string name;
+    private int height;
+
+    public Tree(string v1, int v2)
+    {
+        this.name = v1;
+        if(v2 <= 0)  
+        this.height = 1; else this.height = v2;
+        Console.WriteLine($"Вы создали дерево \"{name}\" высотой  {height} см ");
+    }
+}
