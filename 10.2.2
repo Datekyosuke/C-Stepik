@@ -1,0 +1,31 @@
+using System;
+using System.Linq;
+
+public class MainClass
+{
+    public static void Main()
+    {
+        var s1 = Console.ReadLine().Split(' ').ToArray();
+        var person = new Vasya(s1[0], int.Parse(s1[1]));
+        Console.WriteLine(person.Name);
+        Console.WriteLine("Мне " + person.Age + person.Ending);
+        Surprise.RunMe();
+    }
+}
+
+internal class Vasya
+{
+    public string Name { get; private set; }
+    public int Age { get; private set; }
+    public string Ending { get; private set; }
+    public Vasya(string name, int age)
+    {
+        if(name != "Василий") Name = "Я не " + name + ", а Василий!"; else Name = name;
+        if(age <= 0) Age = 0; else if(age > 122) Age = 122; else Age = age;
+        if(age > 122) Ending = " года";
+        else if ((age >= 5 && age <= 20) || (age >= 105 && age <= 120) || age < 0) Ending = " лет";
+        else if (age % 10 == 0 || (age % 10 >= 5 && age % 10 <= 9)) Ending = " лет";
+        else if (age % 10 == 1) Ending = " год";
+        else if (age % 10 >= 2 && age % 10 <= 4) Ending = " года";
+    }
+}
