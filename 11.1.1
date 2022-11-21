@@ -1,0 +1,33 @@
+using System;
+public class MainClass
+{
+    public static void Main()
+    {
+        var firstNum = new Num(9);
+        var secondNum = new Num(1);
+        var thirdNum = new Num(90);
+        firstNum.Add(secondNum).Add(thirdNum).Print();
+    }
+}
+
+public static class NumExtensions
+{
+    public static Num Add(this Num left, Num right)
+    {
+        return new Num(left.Value + right.Value);
+    }
+}
+
+public class Num
+{
+    public int Value;
+    public Num(int value)
+    {
+        Value = value;
+    }
+
+    public void Print()
+    {
+        Console.WriteLine(this.Value);
+    }
+}
