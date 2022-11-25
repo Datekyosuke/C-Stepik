@@ -1,0 +1,114 @@
+using System;
+using System.Collections.Generic;
+public enum SexPand
+{
+    male = 1,
+    female = 2,
+}
+
+public class MainClass
+{
+    public static void Main()
+    {
+        string phrase;
+        bool flag = true;
+        List<Pandas> listPand = new List<Pandas>();
+        List<Pandas> listPandRelations = new List<Pandas>();
+        while (flag)
+        {
+            phrase = Console.ReadLine();
+            var words = phrase.Split(' ');
+            if (phrase == "end") { flag = false; break; }
+            else
+            {
+                listPand.Add(new Pandas(int.Parse(words[0]), int.Parse(words[1]), (words[2] == "male") ? SexPand.male : SexPand.female));
+            }
+               
+        }
+        Console.WriteLine("Total pandas count: " + listPand.Count);
+        int countMale = 0;
+        int countFemale = 0;
+        double[,] distances = new double[listPand.Count, listPand.Count];
+        for (int i = 0; i < listPand.Count; i++)
+            if (listPand[i].Sex == SexPand.female) { countFemale++; continue; }
+            else
+                for (int j = 0; j < listPand.Count; j++)
+                     if (listPand[j].Sex == SexPand.female)
+                        distances[i, j] = Math.Round(Math.Sqrt(Math.Pow((listPand[i].CoordX - listPand[j].CoordX), 2) + Math.Pow((listPand[i].CoordY - listPand[j].CoordY), 2)), 2);
+        countMale = listPand.Count - countFemale;
+        for (int i = 0; i < Math.Min(countMale, countFemale); i++)
+        {
+            double minDistanse = Double.MaxValue;
+            int malePand = 0;
+            int femalePand = 0;
+            for (int j = 0; j < listPand.Count; j++)
+                if (listPand[j].Sex == SexPand.male && listPand[j].relations == false)
+                {
+                    for (var k = 0; k < listPand.Count; k++)
+                    {
+                        if(distances[j, k] < minDistanse && listPand[k].Sex == SexPand.female && distances[j, k] !=0 && listPand[k].relations == false)
+                        {
+                            minDistanse = distances[j, k];
+                            malePand = j;
+                            femalePand = k;
+                        }
+
+                    }
+                }
+             listPand[malePand].DistanceToPair = minDistanse;
+            listPand[malePand].CoordXPair = listPand[femalePand].CoordX;
+            listPand[malePand].CoordYPair = listPand[femalePand].CoordY;
+            listPand[malePand].relations = true;
+            listPand[femalePand].relations = true;
+            listPandRelations.Add(listPand[malePand]);
+            listPandRelations.Add(listPand[femalePand]);
+           
+        }
+        foreach (var lonely in listPand)
+            if (lonely.relations == false)
+                Console.WriteLine("Lonely " + lonely.Sex + " panda at X: " + lonely.CoordX + ", Y: " + lonely.CoordY);
+        foreach(var pair in listPandRelations)
+            if(pair.Sex == SexPand.male)
+            Console.WriteLine("Pandas pair at distance " + pair.DistanceToPair + ", male panda at X: " + pair.CoordX + ", Y: " + pair.CoordY + ", female panda at X: " + pair.CoordXPair + ", Y: " + pair.CoordYPair);
+
+    }
+}
+public class Pandas
+{
+    
+    private int coordX;
+
+    private int coordY;
+    public SexPand Sex { get; set; }
+    public bool relations { get; set; }
+    public double DistanceToPair { get; set; }
+    public int CoordXPair { get; set; }
+    public int CoordYPair { get; set; }
+    public void PrintAll()
+    {
+        Console.WriteLine("X = " + coordX + " Y = " + coordY + " sex = " + Sex);
+    }
+    public Pandas(int coordX, int coordY, SexPand sex)
+    {
+        CoordX = coordX;
+        CoordY = coordY;
+        Sex = sex;
+        relations = false;
+        DistanceToPair = 0;
+
+    }
+
+    public int CoordX
+    {
+        get { return coordX; }
+        set { coordX = value; }
+    }
+   
+
+    public int CoordY
+    {
+        get { return coordY; }
+        set { coordY = value; }
+    }
+
+}
